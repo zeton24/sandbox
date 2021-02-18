@@ -1,14 +1,21 @@
 import numpy as np
+from pydantic import BaseModel, ValidationError, validator
+
+
+class Settings(BaseModel):
+    number_of_players : int
+    size : int
+
 
 class TicTacToe():
-    def __init__(self,number_of_players):
-        self.players = number_of_players
         self.board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
         self.whose_turn = np.random.choice(['X','O']) 
         self.free_fields = list(range(9))
         self.winning_sets = [{0,1,2},{3,4,5},{6,7,8},
                             {0,3,6},{1,4,7},{2,5,8},
                             {0,4,8},{6,4,2}]
+    def __init__(self, settings):
+        self.players = settings.number_of_players
         self.moves =  {'X': set(), 'O': set()}
 
 

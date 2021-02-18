@@ -1,8 +1,10 @@
-from tictactoe import TicTacToe
+from tictactoe import TicTacToe, Settings
 
-print('Do yoy play: \n1: solo \n2: with a friend?')
+print('Do you play: \n1: solo \n2: with a friend?')
 num_of_players = int(input())
-game = TicTacToe(num_of_players)
+size = int(input('Choose size of the board NxN: '))
+settings = Settings(number_of_players=num_of_players, size=size)
+game = TicTacToe(settings)
 game.how_to_play()
 game.print_board()
 winner = None
@@ -18,4 +20,3 @@ if winner:
     print(f"Player {winner} wins!")
 else:
     print("It's a tie.")
-    
